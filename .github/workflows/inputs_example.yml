@@ -11,16 +11,24 @@ on:
         description: "The application name"
         required: true
         default: "sample app"
-      environment:
-        description: "The environment to deploy to"
+      apptype:
+        description: "The application type"
         required: true
-        default: "dev"
-        type: "choice"
+        default: "webapp"
+        type: choice
         options:
-          - production
-          - dev
-          - test
-          - uat
+          - mobile
+          - webapp
+          - both
+      environment:
+        description: "The deployment environment"
+        required: true
+        type: environment
+      notify:
+        description: "Notify deployment"
+        required: true
+        type: boolean
+        default: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
