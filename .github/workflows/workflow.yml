@@ -1,6 +1,9 @@
 name: Echo Input Parameters
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
     inputs:
       name:
@@ -30,6 +33,8 @@ jobs:
       
       - name: Echo Inputs
         run: |
-          echo "Name: ${{ inputs.name }}"
-          echo "Environment: ${{ inputs.environment }}"
-          echo "Version: ${{ inputs.version }}"
+          echo "::group::Displaying input parameters"
+          echo "Name: ${{ github.event.inputs.name || 'N/A' }}"
+          echo "Environment: ${{ github.event.inputs.environment || 'N/A' }}"
+          echo "Version: ${{ github.event.inputs.version || 'N/A' }}"
+          echo "::endgroup::"
